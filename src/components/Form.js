@@ -1,19 +1,23 @@
 import React, { useState } from "react";
 
-const Form = ({ state, setState }) => {
+const Form = ({widths, colors, setColors, setWidths}) => {
     const [color, setColor] = useState("");
-    const onChange = (e) => setColor(e.target.value);
+    const [width, setWidth] = useState();
+    const onChangeColor = (e) => setColor(e.target.value);
+    const onChangeWidth = (e) => setWidth(e.target.value);
     const onSubmit = (e) => {
         e.preventDefault();
-        setState({
-            ...state,
-            array: [...state.array, color]
-        });
+        setColors([...colors, color]);
+        setWidths(width);
         setColor("");
+        setWidth("");
+    
     }
+
     return (
         <form onSubmit={onSubmit}>
-            <input type="text" name="color" onChange={onChange} value={color} placeholder="Color" />
+            <input type="text" name="colors" onChange={onChangeColor} value={color} placeholder="Color" />
+            <input type="text" name="width" onChange={onChangeWidth} value={width} placeholder="Width&Height" />
             <button>Submit</button>
         </form>
     );

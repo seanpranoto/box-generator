@@ -5,14 +5,15 @@ import StyledBox from "./components/Value";
 
 
 function App() {
-  const [state, setState] = useState({
-    array: []
-  });
+  const [colors, setColors] = useState([]);
+  const [widths, setWidths] = useState();
+
+
   return (
     <div className="App">
-      <Form state={state} setState={setState} />
+      <Form setColors={setColors} setWidths={setWidths} colors={colors} widths={widths} />
       {
-        state.array.map(color => <StyledBox bgcolor={color} />)
+        colors.map((color)=><StyledBox bgColor={color} width={widths}/>)
       }
     </div>
   );
